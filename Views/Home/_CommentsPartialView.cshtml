@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Comment>
+
+<ul>
+    @foreach (var comment in Model)
+    {
+    <li>
+        <div class="card mb-1">
+            <div class="card-body">
+                <h5 class="card-title">@comment.FullName</h5>
+                <h6 class="card-subtitle mb-2 text-muted">@comment.DateCreated.DateTime</h6>
+                <p class="card-text">@comment.Content</p>
+                <button id="@comment.CommentId" onclick="submitReply('@Url.Action("CreateReply","Home",new { replyToCommentId=comment.CommentId },Context.Request.Scheme)', '@comment.CommentId')" type="button" class="btn btn-sm btn-warning pop">Reply</button>
+            </div>
+        </div>
+        <partial name="_CommentsPartialView" model="comment.Children" />
+    </li>
+    }
+
+</ul> 

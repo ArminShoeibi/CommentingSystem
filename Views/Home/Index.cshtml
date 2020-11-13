@@ -1,0 +1,76 @@
+﻿@model IEnumerable<Comment>
+
+@{
+    ViewData["Title"] = "Comments";
+}
+
+<div class="row m-4">
+
+    <div class="col">
+
+        <div class="card border-primary">
+            <div class="card-body">
+                <h5 class="card-title">Commenting System</h5>
+                <partial name="_CreateComment" model="new CommentCreationDto()" />
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container-fluid">
+    <ul class="list-group">
+
+        @foreach (Comment comment in Model)
+        {
+            <li class="list-group-item">
+
+                <div class="card mb-1">
+                    <div class="card-body">
+                        <h5 class="card-title">@comment.FullName</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">@comment.DateCreated.DateTime</h6>
+                        <p class="card-text">@comment.Content</p>
+                        <button tabindex="0" id="@comment.CommentId" onclick="submitReply('@Url.Action("CreateReply","Home",new { replyToCommentId=comment.CommentId },Context.Request.Scheme)', '@comment.CommentId')" type="button" class="btn btn-sm btn-warning pop">Reply</button>
+                    </div>
+                </div>
+                <partial name="_CommentsPartialView" model="comment.Children" />
+            </li>
+
+        }
+
+    </ul>
+</div>
+
+
+
+
+@section scripts {
+
+    <script>
+        function disposePopovers() {
+            $('.pop').popover('dispose')
+        }
+        function submitReply(url,id) {
+            $.ajax({
+                url: url,
+                type: 'GET',
+                cache: false,
+                success: function (result) {
+                    $(`#${id}`).popover({
+                        container: 'body',
+                        html: true,
+                        sanitize: false,
+                        content: result,
+                        title:'ok',
+                      
+                    })
+                    $(`#${id}`).popover('show');
+                   
+                },
+
+            });
+        }
+    </script>
+
+}
+

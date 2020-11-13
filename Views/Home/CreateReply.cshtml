@@ -1,0 +1,34 @@
+﻿@model CommentReplyDto
+
+<button onclick="disposePopovers()">x</button>
+<form method="post" asp-action="CreateReply" asp-controller="Home">
+    <input asp-for="ReplyToCommentId" hidden />
+    <div class="row">
+        <div class="col form-group">
+            <label asp-for="FullName" class="col-form-label"></label>
+            <input asp-for="FullName" class="form-control" />
+            <span asp-validation-for="FullName" class="text-danger"></span>
+        </div>
+        <div class="col form-group">
+            <label asp-for="Email" class="col-form-label"></label>
+            <input asp-for="Email" class="form-control" />
+            <span asp-validation-for="Email" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col form-group">
+            <label class="col-form-label" asp-for="Content"></label>
+            <textarea asp-for="Content" class="form-control"></textarea>
+            <span asp-validation-for="Content" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col form-group">
+            <input type="submit" class="btn btn-success" />
+        </div>
+    </div>
+</form>
+
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
