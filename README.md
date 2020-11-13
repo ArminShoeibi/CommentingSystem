@@ -1,6 +1,8 @@
 # Nested Commenting System
-Nested Commenting System With .NET 5 and EF Core 5
+Nested Commenting System With 
 
+* ASP.NET Core 5
+* EF Core 5
 * Bootstrap 4.5.3
 * jQuery 3.5.1
 
