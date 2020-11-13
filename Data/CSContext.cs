@@ -13,7 +13,6 @@ namespace CommentingSystem.Data
         {
             
         }
-        public DbSet<Comment> Comments { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -34,5 +33,7 @@ namespace CommentingSystem.Data
                 comment.Property(c => c.Content).HasMaxLength(1000).IsRequired();
             });
         }
+
+        public DbSet<Comment> Comments { get; set; }
     }
 }
