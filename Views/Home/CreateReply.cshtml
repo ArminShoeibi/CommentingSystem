@@ -1,6 +1,6 @@
 ﻿@model CommentReplyDto
 
-<button onclick="disposePopovers()">x</button>
+<button onclick="disposePopovers()" class="btn btn-sm btn-danger">X</button>
 <form method="post" asp-action="CreateReply" asp-controller="Home">
     <input asp-for="ReplyToCommentId" hidden />
     <div class="row">
