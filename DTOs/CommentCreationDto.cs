@@ -8,6 +8,7 @@ namespace CommentingSystem.DTOs
 {
     public class CommentCreationDto
     {
+        public int? ReplyToCommentId { get; set; }
 
         [Required]
         [StringLength(1000, MinimumLength = 10)]
