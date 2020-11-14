@@ -27,7 +27,7 @@ namespace CommentingSystem
             services.AddControllersWithViews()
                     .AddRazorRuntimeCompilation();
 
-            services.AddDbContextPool<CSContext>(dbContextOptions =>
+            services.AddDbContextPool<CommentingSystemContext>(dbContextOptions =>
             {
                 dbContextOptions.UseSqlServer(_configuration.GetConnectionString("CommentSystemConStr"));
             });

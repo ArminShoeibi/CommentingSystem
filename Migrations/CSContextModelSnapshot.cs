@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommentingSystem.Migrations
 {
-    [DbContext(typeof(CSContext))]
+    [DbContext(typeof(CommentingSystemContext))]
     partial class CSContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

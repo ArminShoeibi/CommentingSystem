@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace CommentingSystem.Data
 {
-    public class CSContext : DbContext
+    public class CommentingSystemContext : DbContext
     {
-        public CSContext(DbContextOptions<CSContext> dbContextOptions) : base(dbContextOptions)
+        public CommentingSystemContext(DbContextOptions<CommentingSystemContext> dbContextOptions) : base(dbContextOptions)
         {
             
         }

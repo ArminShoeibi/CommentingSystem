@@ -12,9 +12,9 @@ namespace CommentingSystem.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly CSContext _db;
+        private readonly CommentingSystemContext _db;
 
-        public HomeController(CSContext db)
+        public HomeController(CommentingSystemContext db)
         {
             _db = db;
         }
