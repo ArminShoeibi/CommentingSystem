@@ -6,10 +6,10 @@
 * Bootstrap 4.5.3
 * jQuery 3.5.1
 
-after downloading project you need to run it with VS 2019 V 16.8 and above then check connection string and after that apply migrations
-with
+After download or clone the project you will need to run it with VS 2019 V16.8+, check connection string and apply migrations using below command:
 
 ```
 Update-Database
 ```
-run porject and enjoy.
+
+Run porject and enjoy.
