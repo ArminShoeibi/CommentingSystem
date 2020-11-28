@@ -1,5 +1,9 @@
 # Nested Commenting System
 
+<p align="center">
+  <img src="https://github.com/ArminShoeibi/CommentingSystem/blob/master/wwwroot/img/Capture.JPG" width="600"/>
+</p>
+
 *Nested Commenting System With*
 * ASP.NET Core 5 
 * EF Core 5
