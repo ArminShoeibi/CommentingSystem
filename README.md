@@ -1,7 +1,7 @@
 # Nested Commenting System
 
 <p align="center">
-  <img src="https://github.com/ArminShoeibi/CommentingSystem/blob/master/wwwroot/img/Capture.JPG" width="600"/>
+  <img src="https://github.com/ArminShoeibi/CommentingSystem/blob/master/wwwroot/img/Capture.JPG"/>
 </p>
 
 *Nested Commenting System With*
