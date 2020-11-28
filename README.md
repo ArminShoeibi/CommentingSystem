@@ -16,4 +16,4 @@ After download or clone the project you will need to run it with VS 2019 v16.8+,
 Update-Database
 ```
 
-Run porject and enjoy.
+Run the project and enjoy.
