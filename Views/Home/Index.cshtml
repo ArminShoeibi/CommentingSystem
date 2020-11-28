@@ -30,12 +30,22 @@
 
 @section scripts {
     <script>
-        $('#exampleModal').on('show.bs.modal', function (event) {
+        // Send selected comment data to the reply modal.
+        $('#replyModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
-            var replyToCommentId = button.data('reply-to-comment-id')
+            var commentId = button.data('comment-id')
 
             var modal = $(this)
-            modal.find('.modal-body #ReplyToCommentId').val(replyToCommentId)
+            modal.find('.modal-body #ReplyToCommentId').val(commentId)
+        })
+
+        // Send selected comment data to the delete modal.
+        $('#deleteModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var commentId = button.data('comment-id')
+
+            var modal = $(this)
+            modal.find('.modal-body #CommentId').val(commentId)
         })
     </script>
 }

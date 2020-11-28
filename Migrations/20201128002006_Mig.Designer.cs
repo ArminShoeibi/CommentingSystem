@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommentingSystem.Migrations
 {
     [DbContext(typeof(CommentingSystemContext))]
-    [Migration("20201112213932_Init")]
-    partial class Init
+    [Migration("20201128002006_Mig")]
+    partial class Mig
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

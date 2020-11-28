@@ -59,5 +59,27 @@ namespace CommentingSystem.Controllers
             // TODO: Throw some error
             return RedirectToAction(nameof(Index));
         }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteComment(int CommentId)
+        {
+            var comment = await _db.Comments
+                .Include(x => x.Children)
+                .SingleOrDefaultAsync(x => x.CommentId == CommentId);
+
+            if (comment == null)
+            {
+                return NotFound();
+            }
+
+            foreach (var child in comment.Children)
+            {
+                child.ParentId = null;
+            }
+
+            _db.Comments.Remove(comment);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
     }
 }

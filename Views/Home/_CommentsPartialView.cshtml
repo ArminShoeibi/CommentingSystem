@@ -9,7 +9,8 @@
                     <h5 class="card-title">@comment.FullName</h5>
                     <h6 class="card-subtitle mb-2 text-muted">@comment.DateCreated.DateTime</h6>
                     <p class="card-text">@comment.Content</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" data-reply-to-comment-id="@comment.CommentId">Reply</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal" data-comment-id="@comment.CommentId">Reply</button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-comment-id="@comment.CommentId">Delete</button>
                 </div>
             </div>
             <partial name="_CommentsPartialView" model="comment.Children" />

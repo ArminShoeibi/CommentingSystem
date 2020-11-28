@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CommentingSystem.Migrations
 {
     [DbContext(typeof(CommentingSystemContext))]
-    partial class CSContextModelSnapshot : ModelSnapshot
+    partial class CommentingSystemContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
