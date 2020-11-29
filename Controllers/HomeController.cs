@@ -61,25 +61,21 @@ namespace CommentingSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> DeleteComment(int CommentId)
+        public async Task<IActionResult> DeleteComment(int commentId)
         {
-            var comment = await _db.Comments
-                .Include(x => x.Children)
-                .SingleOrDefaultAsync(x => x.CommentId == CommentId);
+            var comments = await _db.Comments
+                .Include(x => x.Children).ToListAsync();
 
-            if (comment == null)
-            {
-                return NotFound();
-            }
+            var flatten = Flatten(comments.Where(x => x.CommentId == commentId));
 
-            foreach (var child in comment.Children)
-            {
-                child.ParentId = null;
-            }
+            _db.Comments.RemoveRange(flatten);
 
-            _db.Comments.Remove(comment);
             await _db.SaveChangesAsync();
+
             return RedirectToAction(nameof(Index));
         }
+
+        IEnumerable<Comment> Flatten(IEnumerable<Comment> comments) =>
+            comments.SelectMany(x => Flatten(x.Children)).Concat(comments);
     }
 }
