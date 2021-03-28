@@ -19,6 +19,7 @@ namespace CommentingSystem.Domain
 
         public Comment Parent { get; set; }
         public ICollection<Comment> Children { get; set; }
+        public ICollection<Like> Likes { get; set; }
 
         #endregion
     }

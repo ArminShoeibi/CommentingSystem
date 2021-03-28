@@ -11,6 +11,11 @@
                     <p class="card-text">@comment.Content</p>
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal" data-comment-id="@comment.CommentId">Reply</button>
                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-comment-id="@comment.CommentId">Delete</button>
+                    
+                    <a onclick="likeComments(@comment.CommentId)"><img src="https://img.icons8.com/nolan/64/facebook-like.png" /></a>
+                    <span id="likeStatus@(comment.CommentId)"></span>
+                    <span> | </span>
+                    <span id="likeCounter@(comment.CommentId)">like Count is : @comment.Likes?.Count</span>
                 </div>
             </div>
             <partial name="_CommentsPartialView" model="comment.Children" />

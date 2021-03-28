@@ -30,6 +30,7 @@
 
 @section scripts {
     <script>
+
         // Send selected comment data to the reply modal.
         $('#replyModal').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
@@ -47,5 +48,23 @@
             var modal = $(this)
             modal.find('.modal-body #CommentId').val(commentId)
         })
+
+        function likeComments(id) {
+            $.ajax({
+                type: "get",
+                url: "@Url.Action("LikeComment", "home")",
+                data: { commentId: id},
+                dataType: "text",
+                success: function (msg) {
+                    var data = JSON.parse(msg);
+                    if (data.status == "failed") {
+                        $("#likeStatus" + id).html(data.message);
+                    }
+                    else{
+                        $("#likeCounter" + id).html("like Count is : " + data.message);
+                    }
+                }
+            });
+        }
     </script>
 }
