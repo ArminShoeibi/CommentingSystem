@@ -4,14 +4,16 @@ using CommentingSystem.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommentingSystem.Migrations
 {
     [DbContext(typeof(CommentingSystemContext))]
-    partial class CommentingSystemContextModelSnapshot : ModelSnapshot
+    [Migration("20210328093840_init_LikeEntity")]
+    partial class init_LikeEntity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
