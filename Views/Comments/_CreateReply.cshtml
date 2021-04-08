@@ -9,7 +9,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form asp-action="CreateComment" asp-controller="Home">
+            <form asp-action="CreateComment" asp-controller="Comments">
                 <div class="modal-body">
                     <input asp-for="ReplyToCommentId" hidden />
                     <div class="row">
@@ -51,7 +51,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form asp-action="DeleteComment" asp-controller="Home">
+            <form asp-action="DeleteComment" asp-controller="Comments">
                 <div class="modal-body">
                     <input id="CommentId" name="CommentId" hidden />
                     <div class="row">
