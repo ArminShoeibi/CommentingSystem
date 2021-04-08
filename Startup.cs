@@ -41,7 +41,7 @@ namespace CommentingSystem
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapDefaultControllerRoute();
+                endpoints.MapControllerRoute("default","{controller=Comments}/{action=Index}/{id?}");
             });
         }
     }

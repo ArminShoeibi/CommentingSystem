@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace CommentingSystem.Controllers
 {
-    public class HomeController : Controller
+    public class CommentsController : Controller
     {
         private readonly CommentingSystemContext _db;
 
-        public HomeController(CommentingSystemContext db)
+        public CommentsController(CommentingSystemContext db)
         {
             _db = db;
         }
@@ -48,8 +48,6 @@ namespace CommentingSystem.Controllers
                     FullName = commentCDto.FullName,
                     Email = commentCDto.Email,
                     Content = commentCDto.Content,
-                    DateCreated = DateTimeOffset.Now,
-                    DateModified = DateTimeOffset.Now
                 };
 
                 await _db.Comments.AddAsync(newComment);

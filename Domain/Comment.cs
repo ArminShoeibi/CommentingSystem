@@ -10,8 +10,8 @@ namespace CommentingSystem.Domain
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Content { get; set; }
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset DateModified { get; set; }
+        public DateTimeOffset DateCreated { get; set; } = DateTimeOffset.Now;
+        public DateTimeOffset DateModified { get; set; } = DateTimeOffset.Now;
 
 
 
