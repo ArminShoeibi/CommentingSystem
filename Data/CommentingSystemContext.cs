@@ -5,15 +5,13 @@ namespace CommentingSystem.Data
 {
     public class CommentingSystemContext : DbContext
     {
-        public CommentingSystemContext(DbContextOptions<CommentingSystemContext> dbContextOptions) : base(dbContextOptions)
+        public CommentingSystemContext(DbContextOptions<CommentingSystemContext> dbContextOptions) 
+            : base(dbContextOptions)
         {
-            
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
             modelBuilder.Entity<Comment>(comment =>
             {
                 comment.HasKey(c => c.CommentId);
@@ -31,12 +29,6 @@ namespace CommentingSystem.Data
                 comment.Property(c => c.FullName).HasMaxLength(60).IsRequired();
                 comment.Property(c => c.Email).HasMaxLength(100).IsRequired();
                 comment.Property(c => c.Content).HasMaxLength(1000).IsRequired();
-            });
-
-            modelBuilder.Entity<Like>(like =>
-            {
-                like.HasKey(c => c.Id);
-                like.Property(c => c.Ip).HasMaxLength(16).IsRequired();
             });
         }
 

@@ -15,16 +15,16 @@ namespace CommentingSystem.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.5")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("CommentingSystem.Domain.Comment", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -59,20 +59,18 @@ namespace CommentingSystem.Migrations
 
             modelBuilder.Entity("CommentingSystem.Domain.Like", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<int>("LikeId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("CommentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                    b.Property<string>("IP")
+                        .HasColumnType("nvarchar(45)");
 
-                    b.HasKey("Id");
+                    b.HasKey("LikeId");
 
                     b.HasIndex("CommentId");
 

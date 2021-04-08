@@ -80,7 +80,7 @@ namespace CommentingSystem.Controllers
         {
             if (!await _db.Comments.AnyAsync(c => c.CommentId == commentId))
                 return Json(new { Status = "failed", message = "comment id is not correct!" });
-            var userIp = HttpContext.Connection.RemoteIpAddress.ToString();
+            var userIP = HttpContext.Connection.RemoteIpAddress;
             //if once user like , after he cant unlike
             //if(await _db.Likes.AnyAsync(c => c.CommentId == commentId && c.Ip == userIp))
             //{
@@ -88,18 +88,19 @@ namespace CommentingSystem.Controllers
             //}
 
             //if user like a comment, then can unlike comment
-            var likeObj = await _db.Likes.FirstOrDefaultAsync(c => c.CommentId == commentId && c.Ip == userIp);
+            var likeObj = await _db.Likes.FirstOrDefaultAsync(c => c.CommentId == commentId && c.IP == userIP);
             if (likeObj!=null)
             {
                 _db.Likes.Remove(likeObj);
             }
             else
             {
-                await _db.Likes.AddAsync(new Like()
+                Like newLike = new()
                 {
                     CommentId = commentId,
-                    Ip = userIp
-                });
+                    IP = userIP
+                };
+                await _db.Likes.AddAsync(newLike);
             }
            
             await _db.SaveChangesAsync();
