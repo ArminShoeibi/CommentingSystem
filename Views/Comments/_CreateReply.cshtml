@@ -11,7 +11,7 @@
             </div>
             <form asp-action="CreateComment" asp-controller="Comments">
                 <div class="modal-body">
-                    <input asp-for="ReplyToCommentId" hidden />
+                    <input asp-for="ParentId" hidden />
                     <div class="row">
                         <div class="col form-group">
                             <label asp-for="FullName" class="col-form-label"></label>

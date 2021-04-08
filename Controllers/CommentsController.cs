@@ -1,9 +1,9 @@
 ﻿using CommentingSystem.Data;
 using CommentingSystem.Domain;
 using CommentingSystem.DTOs;
+using CommentingSystem.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -12,11 +12,26 @@ namespace CommentingSystem.Controllers
 {
     public class CommentsController : Controller
     {
+
         private readonly CommentingSystemContext _db;
 
         public CommentsController(CommentingSystemContext db)
         {
             _db = db;
+        }
+
+        // /comments/findcomment/6
+        public IActionResult FindComment(int id)
+        {
+            var commentWithAllOfItsDescendants =
+                    _db.Comments
+                            .Include(comment => comment.Children)
+                            .Where(comment => comment.CommentId == id
+                                            || comment.Children.Any(m => comment.CommentId == m.ParentId))
+                            .ToList()
+                            .FirstOrDefault(comment => comment.CommentId == id);
+
+            return Json(commentWithAllOfItsDescendants);
         }
 
         public async Task<IActionResult> Index()
@@ -44,7 +59,7 @@ namespace CommentingSystem.Controllers
             {
                 var newComment = new Comment
                 {
-                    ParentId = createCommentDto.ReplyToCommentId,
+                    ParentId = createCommentDto.ParentId,
                     FullName = createCommentDto.FullName,
                     Email = createCommentDto.Email,
                     Content = createCommentDto.Content,
@@ -52,6 +67,30 @@ namespace CommentingSystem.Controllers
 
                 await _db.Comments.AddAsync(newComment);
                 await _db.SaveChangesAsync();
+
+                if (createCommentDto.ParentId.HasValue && createCommentDto.ParentId.Value > 0)
+                {
+                    Comment parentComment = await _db.Comments.FindAsync(createCommentDto.ParentId);
+
+                    List<int> childrenIdsOfParent = new();
+
+                    if (string.IsNullOrEmpty(parentComment.ChildrenIds))
+                    {
+                        childrenIdsOfParent.Add(newComment.CommentId);
+                    }
+                    else
+                    {
+                        List<int> currentChildrenIdsOfParent = parentComment.ChildrenIds.CommaSeparatedStringToIntList();
+
+                        childrenIdsOfParent.AddRange(currentChildrenIdsOfParent);
+                        childrenIdsOfParent.Add(newComment.CommentId);
+                    }
+
+                    parentComment.ChildrenIds = string.Join<int>(",", childrenIdsOfParent);
+                    await _db.SaveChangesAsync();
+
+                }
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -62,12 +101,23 @@ namespace CommentingSystem.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteComment(int commentId)
         {
-            var comments = await _db.Comments
-                .Include(x => x.Children).ToListAsync();
+            Comment commentToDelete = await _db.Comments.FindAsync(commentId);
 
-            var flatten = Flatten(comments.Where(x => x.CommentId == commentId));
+            if (string.IsNullOrEmpty(commentToDelete.ChildrenIds))
+            {
+                _db.Comments.Remove(commentToDelete);
+            }
+            else
+            {
+                List<int> currentChildrenIdsOfParent = commentToDelete.ChildrenIds.CommaSeparatedStringToIntList();
 
-            _db.Comments.RemoveRange(flatten);
+                List<Comment> childCommentsToDelete =
+                    await _db.Comments.Where(c => currentChildrenIdsOfParent.Contains(c.CommentId))
+                                      .ToListAsync();
+                childCommentsToDelete.Add(commentToDelete);
+
+                _db.Comments.RemoveRange(childCommentsToDelete);
+            }
 
             await _db.SaveChangesAsync();
 
@@ -87,7 +137,7 @@ namespace CommentingSystem.Controllers
 
             //if user like a comment, then can unlike comment
             var likeObj = await _db.Likes.FirstOrDefaultAsync(c => c.CommentId == commentId && c.IP == userIP);
-            if (likeObj!=null)
+            if (likeObj != null)
             {
                 _db.Likes.Remove(likeObj);
             }
@@ -100,12 +150,9 @@ namespace CommentingSystem.Controllers
                 };
                 await _db.Likes.AddAsync(newLike);
             }
-           
+
             await _db.SaveChangesAsync();
             return Json(new { Status = "success", message = await _db.Likes.CountAsync(c => c.CommentId == commentId) });
         }
-
-        IEnumerable<Comment> Flatten(IEnumerable<Comment> comments) =>
-            comments.SelectMany(x => Flatten(x.Children)).Concat(comments);
     }
 }

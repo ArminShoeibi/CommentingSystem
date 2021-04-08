@@ -4,7 +4,7 @@ namespace CommentingSystem.DTOs
 {
     public record CreateCommentDto
     {
-        public int? ReplyToCommentId { get; init; }
+        public int? ParentId { get; init; }
 
         [Required(AllowEmptyStrings = false)]
         [StringLength(1000, MinimumLength = 10)]

@@ -7,6 +7,7 @@ namespace CommentingSystem.Domain
     {
         public int CommentId { get; set; }
         public int? ParentId  { get; set; }
+        public string ChildrenIds { get; set; }
         public string FullName { get; set; }
         public string Email { get; set; }
         public string Content { get; set; }
