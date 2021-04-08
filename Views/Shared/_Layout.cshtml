@@ -2,19 +2,16 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@ViewBag.Title</title>
 
-    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet" asp-append-version="true" />
 
     <style>
         ul {
             list-style-type: none;
             padding-left: 8px;
-        }
-        /* The max width is dependant on the container (more info below) */
-        .popover {
-            max-width: 100%; /* Max Width of the popover (depending on the container!) */
         }
     </style>
 
@@ -25,11 +22,10 @@
         @RenderBody()
     </main>
 
-
-    <script src="~/lib/jquery/jquery.min.js"></script>
-    <script src="~/lib/jquery-validate/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/libs/jquery/jquery.min.js" asp-append-version="true"></script>
+    <script src="~/libs/jquery-validate/jquery.validate.min.js" asp-append-version="true"></script>
+    <script src="~/libs/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js" asp-append-version="true"></script>
+    <script src="~/libs/bootstrap/js/bootstrap.bundle.min.js" asp-append-version="true"></script>
 
     @await RenderSectionAsync("scripts", false)
 </body>
