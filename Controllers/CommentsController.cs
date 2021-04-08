@@ -38,16 +38,16 @@ namespace CommentingSystem.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateComment(CommentCreationDto commentCDto)
+        public async Task<IActionResult> CreateComment(CreateCommentDto createCommentDto)
         {
             if (ModelState.IsValid)
             {
                 var newComment = new Comment
                 {
-                    ParentId = commentCDto.ReplyToCommentId,
-                    FullName = commentCDto.FullName,
-                    Email = commentCDto.Email,
-                    Content = commentCDto.Content,
+                    ParentId = createCommentDto.ReplyToCommentId,
+                    FullName = createCommentDto.FullName,
+                    Email = createCommentDto.Email,
+                    Content = createCommentDto.Content,
                 };
 
                 await _db.Comments.AddAsync(newComment);
