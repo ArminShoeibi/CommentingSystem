@@ -1,12 +1,12 @@
 # Nested Commenting System
 
 <p align="center">
-  <img src="https://github.com/ArminShoeibi/CommentingSystem/blob/master/wwwroot/img/Capture.JPG"/>
+  <img src="https://github.com/ArminShoeibi/CommentingSystem/blob/master/src/CommentingSystem.Web/wwwroot/img/Capture.JPG"/>
 </p>
 
 *Nested Commenting System With*
-* ASP.NET Core 5 
-* EF Core 5
+* ASP.NET Core 6
+* EF Core 6
 * Bootstrap 4.5.3
 * jQuery 3.5.1
 
