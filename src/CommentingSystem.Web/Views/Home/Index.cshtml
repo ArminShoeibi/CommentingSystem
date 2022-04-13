@@ -4,26 +4,24 @@
     ViewData["Title"] = "Comments";
 }
 
-<div class="container-fluid mt-2">
-    <div class="row">
-        <div class="col-12">
-            <div class="card border-primary">
-                <div class="card-body">
-                    <h5 class="card-title">Commenting System</h5>
-                    <partial name="_CreateComment" model="default" />
-                </div>
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card border-primary">
+            <div class="card-body">
+                <h5 class="card-title">Commenting System</h5>
+                <partial name="_CreateComment" model="default" />
             </div>
         </div>
-
-        @if (Model.Any())
-        {
-            <div class="col-12 mt-2">
-                <div class="border border-primary rounded p-2">
-                    <partial name="_CommentsPartialView" model="Model" />
-                </div>
-            </div>
-        }
     </div>
+
+    @if (Model.Any())
+    {
+        <div class="col-12 mt-2">
+            <div class="border border-primary rounded p-2">
+                <partial name="_CommentsPartialView" model="Model" />
+            </div>
+        </div>
+    }
 </div>
 
 <partial name="_CreateReply" model="default" />

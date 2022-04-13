@@ -3,18 +3,21 @@
 <form method="post" asp-action="CreateComment" asp-controller="Home">
 
     <div class="row">
-        <div class="col form-group">
-            <label asp-for="FullName" class="col-form-label"></label>
-            <input asp-for="FullName" class="form-control" />
-            <span asp-validation-for="FullName" class="text-danger"></span>
+        <div class="col">
+            <div class="form-floating">
+                <input asp-for="FullName" class="form-control" placeholder=" " />
+                <label asp-for="FullName"></label>
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
         </div>
 
-        <div class="col form-group">
-            <label asp-for="Email" class="col-form-label"></label>
-            <input asp-for="Email" class="form-control" />
-            <span asp-validation-for="Email" class="text-danger"></span>
+        <div class="col">
+            <div class="form-floating">
+                <input asp-for="Email" class="form-control" placeholder=" " />
+                <label asp-for="Email"></label>
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
         </div>
-
     </div>
 
     <div class="row">
