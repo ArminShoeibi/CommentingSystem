@@ -28,6 +28,9 @@
 
 @section scripts {
     <script>
+        var replyModal = new bootstrap.Modal(document.getElementById('myModal'), {
+                   keyboard: false
+        });
 
         // Send selected comment data to the reply modal.
         $('#replyModal').on('show.bs.modal', function (event) {

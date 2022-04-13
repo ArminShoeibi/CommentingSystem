@@ -1,70 +1,69 @@
 ﻿@model CreateCommentDto
 
 <div class="modal fade" id="replyModal" tabindex="-1" role="dialog" aria-labelledby="replyModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title text-primary" id="replyModalLabel">Reply to this comment ...</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form asp-action="CreateComment" asp-controller="Home">
-                <div class="modal-body">
-                    <input asp-for="ReplyToCommentId" hidden />
-                    <div class="row">
-                        <div class="col form-group">
-                            <label asp-for="FullName" class="col-form-label"></label>
-                            <input asp-for="FullName" class="form-control" />
-                            <span asp-validation-for="FullName" class="text-danger"></span>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form asp-action="CreateComment" asp-controller="Home">
+                        <input asp-for="ReplyToCommentId" hidden />
+                        <div class="row">
+                            <div class="col form-group">
+                                <label asp-for="FullName" class="col-form-label"></label>
+                                <input asp-for="FullName" class="form-control" />
+                                <span asp-validation-for="FullName" class="text-danger"></span>
+                            </div>
+                            <div class="col form-group">
+                                <label asp-for="Email" class="col-form-label"></label>
+                                <input asp-for="Email" class="form-control" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
                         </div>
-                        <div class="col form-group">
-                            <label asp-for="Email" class="col-form-label"></label>
-                            <input asp-for="Email" class="form-control" />
-                            <span asp-validation-for="Email" class="text-danger"></span>
-                        </div>
-                    </div>
 
-                    <div class="row">
-                        <div class="col form-group">
-                            <label asp-for="Content" class="col-form-label"></label>
-                            <textarea asp-for="Content" class="form-control"></textarea>
-                            <span asp-validation-for="Content" class="text-danger"></span>
+                        <div class="row">
+                            <div class="col form-group">
+                                <label asp-for="Content" class="col-form-label"></label>
+                                <textarea asp-for="Content" class="form-control"></textarea>
+                                <span asp-validation-for="Content" class="text-danger"></span>
+                            </div>
                         </div>
-                    </div>
-
+                    </form>
                 </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-outline-primary">Send message</button>
-                </div>
-            </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-outline-primary">Send message</button>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+@*<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title text-danger" id="deleteModalLabel">Delete this comment?</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form asp-action="DeleteComment" asp-controller="Home">
-                <div class="modal-body">
-                    <input id="CommentId" name="CommentId" hidden />
-                    <div class="row">
-                        <div class="col">
-                            <p>Are you sure for delete this comment?</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-outline-danger">Delete</button>
-                </div>
-            </form>
-        </div>
+    <div class="modal-content">
+    <div class="modal-header">
+    <h5 class="modal-title text-danger" id="deleteModalLabel">Delete this comment?</h5>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+    </button>
     </div>
-</div>
+    <form asp-action="DeleteComment" asp-controller="Home">
+    <div class="modal-body">
+    <input id="CommentId" name="CommentId" hidden />
+    <div class="row">
+    <div class="col">
+    <p>Are you sure for delete this comment?</p>
+    </div>
+    </div>
+    </div>
+    <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+    <button type="submit" class="btn btn-outline-danger">Delete</button>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>*@
