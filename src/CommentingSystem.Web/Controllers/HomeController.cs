@@ -34,7 +34,7 @@ public class HomeController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateComment(CommentCreationDto commentCDto)
+    public async Task<IActionResult> CreateComment(CreateCommentDto commentCDto)
     {
         if (ModelState.IsValid)
         {

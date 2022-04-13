@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
 namespace CommentingSystem.DTOs;
-public record class CommentCreationDto
+public record class CreateCommentDto
 {
     public int? ReplyToCommentId { get; init; }
 
