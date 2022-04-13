@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommentingSystem.Migrations
 {
-    [DbContext(typeof(CommentingSystemContext))]
+    [DbContext(typeof(CommentingSystemDbContext))]
     [Migration("20201128002006_Mig")]
     partial class Mig
     {

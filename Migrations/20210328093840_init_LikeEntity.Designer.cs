@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace CommentingSystem.Migrations
 {
-    [DbContext(typeof(CommentingSystemContext))]
+    [DbContext(typeof(CommentingSystemDbContext))]
     [Migration("20210328093840_init_LikeEntity")]
     partial class init_LikeEntity
     {
