@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Comment>
+
+@{
+    ViewData["Title"] = "Comments";
+}
+
+<div class="row mt-2">
+    <div class="col-12">
+        <div class="card border-primary">
+            <div class="card-body">
+                <h5 class="card-title">Commenting System</h5>
+                <partial name="_CreateComment" model="default" />
+            </div>
+        </div>
+    </div>
+
+    @if (Model.Any())
+    {
+        <div class="col-12 mt-2">
+            <div class="border border-primary rounded p-2">
+                <partial name="_CommentsPartialView" model="Model" />
+            </div>
+        </div>
+    }
+</div>
+
+<partial name="_CreateReplyModal" model="default" />
+<partial name="_DeleteCommentModal" />
+
+@section scripts {
+    <script>
+        var replyModal = document.getElementById('replyModal');
+        // Send selected comment data to the reply modal.
+        replyModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var commentId = button.getAttribute('data-comment-id');
+            replyModal.querySelector('.modal-body #ReplyToCommentId').value = commentId;
+        });
+
+
+        var deleteModal = document.getElementById('deleteModal');
+        // Send selected comment data to the delete modal.
+        deleteModal.addEventListener('show.bs.modal', function(event) {
+            var button = event.relatedTarget;
+            var commentId = button.getAttribute('data-comment-id');
+            deleteModal.querySelector('.modal-body #CommentId').value = commentId;
+        });
+    </script>
+
+}

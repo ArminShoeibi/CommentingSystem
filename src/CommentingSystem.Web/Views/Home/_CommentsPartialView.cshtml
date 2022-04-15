@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Comment>
+
+<ul>
+    @foreach (var comment in Model)
+    {
+        <li>
+            <div class="@(comment.ParentId == null ? "card mt-2 border-primary" : "card mt-2")">
+                <div class="card-body">
+                    <h5 class="card-title">@comment.FullName</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">@comment.DateCreated.DateTime</h6>
+                    <p class="card-text">@comment.Content</p>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyModal" data-comment-id="@comment.CommentId">Reply</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-comment-id="@comment.CommentId">Delete</button>
+                </div>
+            </div>
+            <partial name="_CommentsPartialView" model="comment.Children" />
+        </li>
+    }
+</ul>
