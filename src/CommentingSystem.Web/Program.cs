@@ -12,11 +12,6 @@ builder.Services.AddDbContextPool<CommentingSystemDbContext>(dbContextOptions =>
 
 var app = builder.Build();
 app.UseStaticFiles();
-
 app.UseRouting();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.MapDefaultControllerRoute();
 await app.RunAsync();

@@ -11,5 +11,4 @@ public class Comment
     public DateTimeOffset DateModified { get; set; }
     public Comment Parent { get; set; }
     public ICollection<Comment> Children { get; set; }
-    public ICollection<Like> Likes { get; set; }
 }

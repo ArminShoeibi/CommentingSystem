@@ -1,0 +1,50 @@
+﻿@model CreateCommentDto
+
+<div class="modal fade" id="replyModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="replyModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-primary" id="replyModalLabel">Reply to this comment ...</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form asp-action="CreateComment" asp-controller="Home" id="CreateCommentForm">
+                        <input asp-for="ReplyToCommentId" hidden />
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input asp-for="FullName" class="form-control" placeholder=" " />
+                                    <label asp-for="FullName"></label>
+                                    <span asp-validation-for="FullName" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <input asp-for="Email" class="form-control" placeholder=" " />
+                                    <label asp-for="Email"></label>
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-floating">
+                                    <textarea asp-for="Content" class="form-control" placeholder="Leave a comment here"></textarea>
+                                    <label asp-for="Content"></label>
+                                    <span asp-validation-for="Content" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @*https://www.w3schools.com/tags/att_button_form.asp *@
+                <input type="submit" class="btn btn-outline-primary" value="Send message" form="CreateCommentForm">
+            </div>
+        </div>
+    </div>
+</div>

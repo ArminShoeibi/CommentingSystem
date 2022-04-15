@@ -1,0 +1,26 @@
+﻿<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger" id="deleteModalLabel">Delete this comment?</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="container-fluid">
+                    <form asp-action="DeleteComment" asp-controller="Home" id="DeleteCommentForm">
+                        <input id="CommentId" name="CommentId" hidden />
+                        <div class="row">
+                            <div class="col">
+                                <p>Are you sure for delete this comment?</p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <input type="submit" class="btn btn-outline-danger" form="DeleteCommentForm" />
+            </div>
+        </div>
+    </div>
+</div>

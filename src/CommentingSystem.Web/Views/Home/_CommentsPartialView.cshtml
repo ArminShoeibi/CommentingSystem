@@ -9,13 +9,8 @@
                     <h5 class="card-title">@comment.FullName</h5>
                     <h6 class="card-subtitle mb-2 text-muted">@comment.DateCreated.DateTime</h6>
                     <p class="card-text">@comment.Content</p>
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#replyModal" data-comment-id="@comment.CommentId">Reply</button>
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal" data-comment-id="@comment.CommentId">Delete</button>
-                    
-                    <a onclick="likeComments(@comment.CommentId)"><img src="https://img.icons8.com/nolan/64/facebook-like.png" /></a>
-                    <span id="likeStatus@(comment.CommentId)"></span>
-                    <span> | </span>
-                    <span id="likeCounter@(comment.CommentId)">like Count is : @comment.Likes?.Count</span>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#replyModal" data-comment-id="@comment.CommentId">Reply</button>
+                    <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal" data-comment-id="@comment.CommentId">Delete</button>
                 </div>
             </div>
             <partial name="_CommentsPartialView" model="comment.Children" />
