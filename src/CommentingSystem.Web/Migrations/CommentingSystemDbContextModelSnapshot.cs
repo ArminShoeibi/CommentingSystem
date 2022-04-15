@@ -6,25 +6,29 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-namespace CommentingSystem.Migrations
+#nullable disable
+
+namespace CommentingSystem.Web.Migrations
 {
     [DbContext(typeof(CommentingSystemDbContext))]
-    partial class CommentingSystemContextModelSnapshot : ModelSnapshot
+    partial class CommentingSystemDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .UseIdentityColumns()
-                .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "6.0.4")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
+
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("CommentingSystem.Domain.Comment", b =>
                 {
                     b.Property<int>("CommentId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CommentId"), 1L, 1);
 
                     b.Property<string>("Content")
                         .IsRequired()
@@ -57,28 +61,6 @@ namespace CommentingSystem.Migrations
                     b.ToTable("Comments");
                 });
 
-            modelBuilder.Entity("CommentingSystem.Domain.Like", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("CommentId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Ip")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CommentId");
-
-                    b.ToTable("Likes");
-                });
-
             modelBuilder.Entity("CommentingSystem.Domain.Comment", b =>
                 {
                     b.HasOne("CommentingSystem.Domain.Comment", "Parent")
@@ -88,22 +70,9 @@ namespace CommentingSystem.Migrations
                     b.Navigation("Parent");
                 });
 
-            modelBuilder.Entity("CommentingSystem.Domain.Like", b =>
-                {
-                    b.HasOne("CommentingSystem.Domain.Comment", "Comment")
-                        .WithMany("Likes")
-                        .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Comment");
-                });
-
             modelBuilder.Entity("CommentingSystem.Domain.Comment", b =>
                 {
                     b.Navigation("Children");
-
-                    b.Navigation("Likes");
                 });
 #pragma warning restore 612, 618
         }
