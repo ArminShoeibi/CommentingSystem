@@ -21,7 +21,6 @@ public class HomeController : Controller
         List<Comment> comments = await _db.Comments
             .AsNoTrackingWithIdentityResolution()
             .Include(c => c.Children)
-            .Include(c => c.Likes)
             .ToListAsync();
 
         // Structure comments into a tree
@@ -71,37 +70,6 @@ public class HomeController : Controller
 
         return RedirectToAction(nameof(Index));
     }
-
-    public async Task<JsonResult> LikeComment(int commentId)
-    {
-        if (!await _db.Comments.AnyAsync(c => c.CommentId == commentId))
-            return Json(new { Status = "failed", message = "comment id is not correct!" });
-        var userIp = HttpContext.Connection.RemoteIpAddress.ToString();
-        //if once user like , after he cant unlike
-        //if(await _db.Likes.AnyAsync(c => c.CommentId == commentId && c.Ip == userIp))
-        //{
-        //    return Json(new { Status = "failed", message = "you have alredy voted for this comment once" });
-        //}
-
-        //if user like a comment, then can unlike comment
-        var likeObj = await _db.Likes.FirstOrDefaultAsync(c => c.CommentId == commentId && c.Ip == userIp);
-        if (likeObj!=null)
-        {
-            _db.Likes.Remove(likeObj);
-        }
-        else
-        {
-            await _db.Likes.AddAsync(new Like()
-            {
-                CommentId = commentId,
-                Ip = userIp
-            });
-        }
-       
-        await _db.SaveChangesAsync();
-        return Json(new { Status = "success", message = await _db.Likes.CountAsync(c => c.CommentId == commentId) });
-    }
-
     IEnumerable<Comment> Flatten(IEnumerable<Comment> comments) =>
         comments.SelectMany(x => Flatten(x.Children)).Concat(comments);
 }
