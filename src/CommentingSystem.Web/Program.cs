@@ -1,17 +1,17 @@
-using CommentingSystem.Data;
-using Microsoft.EntityFrameworkCore;
+using CommentingSystem.Web.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViewsConfiguration();
 
-builder.Services.AddDbContextPool<CommentingSystemDbContext>(dbContextOptions =>
-{
-    dbContextOptions.UseSqlServer(builder.Configuration.GetConnectionString("CommentSystemConStr"));
-});
+builder.Services.AddDbContextConfiguration(builder.Configuration);
 
 var app = builder.Build();
+
 app.UseStaticFiles();
+
 app.UseRouting();
+
 app.MapDefaultControllerRoute();
+
 await app.RunAsync();
